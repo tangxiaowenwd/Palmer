@@ -1,4 +1,0 @@
-jupyter notebook --generate-config
-
-c.NotebookApp.notebook_dir = ''
-E:\Pycharm\Data-Analysis
