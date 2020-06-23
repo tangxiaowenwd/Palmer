@@ -1,0 +1,15 @@
+练习平台：Steamboat
+docker安装
+    docker pull registry.cn-hangzhou.aliyuncs.com/steamboat/steamboat:sp1
+    docker pull registry.cn-hangzhou.aliyuncs.com/steamboat/steamboat:sp2
+    docker pull registry.cn-hangzhou.aliyuncs.com/steamboat/steamboat:sp3
+
+浏览器驱动：
+    http://chromedriver.storage.gooleapis.com/index.html
+Charles:
+    https://www.charlesproxy.com/download/
+
+
+    \
+语言包下载：
+https://github.com/tesseract-ocr/tesseract/wiki/Data-Files
