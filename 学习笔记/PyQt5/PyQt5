@@ -1,0 +1,52 @@
+UI转Py
+    pyuic5 -o firstMainWin.py firstMainWin.ui
+启动Qt Designer
+    designer.exe
+
+
+主窗口
+    QMainWindow
+    QWidget
+    QDialog
+
+设置程序图标：
+    self.setWindowIcon(QIcon(./images/.ico))
+
+QLabel 标签
+
+Layouts 标签：
+    QVBoxLayout
+    QHBoxLayout
+    QGridLayout
+    QFormLayout
+
+文本框类控件：
+    QlineEdit 单行文本内控件
+    QTextEdit 多行文本控件
+
+按钮类控件：
+    QPushButton
+    QRadioButton 可供选择的按钮和文本标签
+    QCheckBox 带文本标签的复选框
+    QComboBox 下拉列表框
+    QSpinBOx 计数器
+    QSlider 滑动条
+
+对话框类控件：
+    QDialog
+    QMessageBox 通用的弹出式对话框
+    QInputDialog 标准对话框
+    QFontDialog 字体选择对话框
+    QFileDialog 打开和保存文件的对话会
+
+窗口绘图类控件：
+    QPainter
+    QPen 用于绘制直线，曲线或者给轮廓画出矩形，椭圆形，多边形以及其他形状
+    Qbrush 用于填充矩形，椭圆或多边形
+    QPixmap 用于绘图设备的图像显示
+
+菜单栏 工具栏 状态栏
+    QMenuBar
+    QToolBar 文本按钮，图标，
+    QStatusBar 对象在底部保留有一个水平条，作为状态栏
+    QPrinter 打印类·
