@@ -3,11 +3,13 @@
 # Time    : 2020/6/24 8:12
 # Author  : TangXiaowen
 import tushare as ts
+from time import sleep
+import datetime as dt
+
 
 class GetTushare():
     def __init__(self):
         self.pro = ts.pro_api("d9f49767544519208fbf91e00a109558fe92e84bdcb70c9173144c24")
-
 
     def get_fund_basic(self,market="E"):
         """
@@ -33,7 +35,8 @@ class GetTushare():
 
     #基金净值
     def get_fund_nav(self,ts_code):
-        self.pro.fund_nav(ts_code)
+        return self.pro.fund_nav(ts_code=ts_code)
+
 
     #基金持仓
     def get_fund_portfolio(self,ts_code):
@@ -61,37 +64,86 @@ class GetTushare():
     def main(self):
             pass
 
-class GetInfo():
+class Getyield ():
+    def __int__(self,num=6):
+        self.num = num
+
+    def main(self):
+        pass
+
+    #单位净值日跌涨幅
+    def DailyIncome(self,unit_nav):
+        res = (unit_nav[0] - unit_nav[1]) / unit_nav[1]
+        return "%.2f%%" %(res*100)
+
+    #周收益
+    def WeeklyYield(self,unit_nav):
+        try:
+            res = (unit_nav[0] - unit_nav[5]) / unit_nav[5]
+            return "%.2f%%" % (res * 100)
+        except:
+            return None
+
+    #月收益
+    def MonthlyYield(self,unit_nav):
+        try:
+            res = (unit_nav[0] - unit_nav[21]) / unit_nav[21]
+            return "%.2f%%" % (res * 100)
+        except:
+            return None
+
+    #季度收益
+    def QuarterlyYield(self,unit_nav):
+        try:
+            res = (unit_nav[0] - unit_nav[63]) / unit_nav[63]
+            return "%.2f%%" % (res * 100)
+        except:
+            return None
+
+    #年收益
+    def AnnualYield(self,unit_nav):
+        try:
+            res = (unit_nav[0] - unit_nav[252]) / unit_nav[252]
+            return "%.2f%%" % (res * 100)
+        except:
+            return None
+
+
+    #3年收益和成立以来的收益
+    def Annual3Yield(self,unit_nav):
+        n = len(unit_nav)
+        if n < 756:
+            res = (unit_nav[0] - unit_nav[n-1]) / unit_nav[n-1]
+            return [None,"%.2f%%" % (res * 100)]
+        res = (unit_nav[0] - unit_nav[756]) / unit_nav[756]
+        res1 = (unit_nav[0] - unit_nav[n-1]) / unit_nav[n-1]
+        return ["%.2f%%" % (res * 100),"%.2f%%" % (res1 * 100)]
+
+
+class Filter():
+    """
+    基金筛选
+    """
     def __init__(self):
-        self.Tushare = GetTushare()
+        self.pro = ts.pro_api("d9f49767544519208fbf91e00a109558fe92e84bdcb70c9173144c24")
 
-    def get_ts_code(self):
-        """
+    def getperformance(self,ts_code):
+        performance = [ts_code]
 
-        :return: Series对象
-        """
-        df = self.Tushare.get_fund_basic()
-        return df["ts_code"]
-
-def get50():
-    main = GetInfo()
-    fund = GetTushare()
-    ss = main.get_ts_code()
-    for s in ss[:20]:
-        #场内场外分开获取
-        print(s)
-        res = fund.get_fund_nav(ts_code=s) #获取基金净值
-        #根据日期获取最近孻
-        print(res)
-
-
+        unit_nav = self.pro.fund_nav(ts_code=ts_code)["unit_nav"]
+        if len(unit_nav) >= 252:
+            performance.append(Getyield().DailyIncome(unit_nav))
+            performance.append(Getyield().WeeklyYield(unit_nav))
+            performance.append(Getyield().MonthlyYield(unit_nav))
+            performance.append(Getyield().QuarterlyYield(unit_nav))
+            performance.append(Getyield().AnnualYield(unit_nav))
+            performance.extend(Getyield().Annual3Yield(unit_nav))
+            print(performance)
 
 
 if __name__ == "__main__":
-    main = GetTushare()
-    for i in main.get_fund_basic()["ts_code"]:
-        main.get_fund_nav(ts_code=i)
-
-
-
+    tss = GetTushare().get_fund_basic(market="E")
+    for ts_code in tss["ts_code"]:
+        main = Filter().getperformance(ts_code=ts_code)
+        sleep(1)
 
