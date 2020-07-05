@@ -1,0 +1,7 @@
+win+R，进入命令行模式，输入：mysql -u root -p，如果前面没有加入path，这里需要进入mysql bin目录
+
+输入步骤5里复制的密码，进入mysql
+
+执行：alter user root@localhost identified by 'admin';  enter键后成功改密码为root，这里sql语句后面的分号不要丢。
+
+基本命令：
