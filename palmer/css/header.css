@@ -1,0 +1,68 @@
+
+
+.header{
+	padding:20px 0;
+	background: linear-gradient(136deg, #8798B2 10%, #A4A3A9 26%,#CDB4A0 68%,#CDB4A0 89%,#CDB4A0 100%); /* W3C */
+}
+.header-left p {
+	text-align: center;
+  	display: block;
+	font-size: 30px;
+}
+.header-left{
+		position: relative;
+		left: 0;
+		float:left;
+		width:18%;
+	}
+	.header-right{
+		float:right;
+		width:60%;
+	}
+	.header-right ul{
+		padding:0;
+		margin:0;
+		text-align:right;
+		}
+	.header-right ul li{
+		display:inline-block;
+		}
+	.header-right ul li a {
+		font-size: 18px;
+		color:#e1e1e1;
+		font-weight:400;
+		margin:0 10px;
+		text-decoration: none;
+		text-align: center;
+		}
+	/*-- menu --*/
+	.header-right span{
+		display:none;
+	}
+/*-- //menu --*/
+/* Effect 20: 3D side */
+.cl-effect-20 a {
+	line-height: 2em;
+	-webkit-perspective: 800px;
+	-moz-perspective: 800px;
+	perspective: 800px;
+}
+.cl-effect-20 a span {
+    position: relative;
+    display: inline-block;
+    padding: 3px 15px 0;
+    background: rgba(70, 57, 173, 0);
+    box-shadow: inset 0 3px rgba(106, 48, 183, 0);
+    -webkit-transition: background 0.6s;
+    -moz-transition: background 0.6s;
+    transition: background 0.6s;
+    -webkit-transform-origin: 50% 0;
+    -moz-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-origin: 0% 50%;
+    -moz-transform-origin: 0% 50%;
+    transform-origin: 0% 50%;
+}

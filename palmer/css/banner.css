@@ -1,0 +1,24 @@
+/*--banner-starts--*/
+.banner{
+	background:url(../images/banner1.jpg) no-repeat 0px 0px;
+	background-size:cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	-ms-background-size: cover;
+	-moz-background-size: cover;
+	min-height: 650px;
+}
+.banner-info h1{
+	color:#fffff1;
+	font-size:50px;
+	margin:0;
+}
+.banner-info p {
+    color: #fffff1;
+    font-size: 25px;
+    margin: 10px 0 0px 0;
+}
+.banner-info {
+    margin-top: 27%;
+}
+/*--banner--*/
