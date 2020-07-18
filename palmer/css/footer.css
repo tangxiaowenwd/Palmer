@@ -1,22 +1,7 @@
 /*--footer-starts--*/
 .footer{
+	margin: 0;
+	height: 10px;
     background: linear-gradient(124deg, #8798B2 10%, #A4A3A9 26%,#CDB4A0 68%,#CDB4A0 89%,#CDB4A0 100%); /* W3C */
 	padding: 2em 0;
 }
-.footer p:nth-child(2){
-	margin-top:15px;
-}
-.footer p{
-	margin:0;
-	font-size:16px;
-	color:#ffffff;
-	text-align:center;
-}
-.footer p a{
-	color:#ffffff;
-}
-.footer p a:hover {
-    text-decoration: none;
-    color: #DC6226;
-}
-/*--footer-end--*/
