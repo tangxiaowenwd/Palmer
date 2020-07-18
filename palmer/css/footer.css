@@ -1,7 +1,13 @@
 /*--footer-starts--*/
 .footer{
-	margin: 0;
-	height: 10px;
     background: linear-gradient(124deg, #8798B2 10%, #A4A3A9 26%,#CDB4A0 68%,#CDB4A0 89%,#CDB4A0 100%); /* W3C */
 	padding: 2em 0;
 }
+
+.footer-inner {
+
+	text-align: center;
+}
+/*.footer-inner p{*/
+/*	text-align: left;*/
+/*}*/
