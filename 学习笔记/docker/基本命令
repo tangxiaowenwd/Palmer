@@ -1,0 +1,23 @@
+
+
+
+进入容器：
+    docker exec -it 243c32535da7 /bin/bash
+
+导入导出容器：
+    docker export 1e560fca3906 > ubuntu.tar
+    导入：
+    cat docker/ubuntu.tar | docker import - test/ubuntu:v1
+    docker import http://example.com/exampleimage.tgz example/imagerepo
+
+删除容器：
+    docker rm -f 1e560fca3906
+
+运行容器：
+     docker run -d -P training/webapp python app.py
+    -d:让容器在后台运行。
+    -P:将容器内部使用的网络端口随机映射到我们使用的主机上
+
+
+ jenkins 密码：
+cat /home/jenkins/secrets/initialAdminPassword
