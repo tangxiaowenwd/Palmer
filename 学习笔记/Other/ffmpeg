@@ -1,0 +1,49 @@
+1.转换视频格式
+    ffmpeg -i input_test.mp4 -vn -acodec copy output_test.flv
+    ffmpeg -i input_test.aac -vn -acodec copy output_test.mp3
+2.抽取画面中的音频
+    ffmpeg -i input_test.mp4 -vn -y -acodec copy output_test.aac
+    ffmpeg -i input_test.mp4 -vn -y -acodec copy output_test.mp3
+    ffmpeg -i input_test.mp4 -acodec copy -vn output_test.mp3
+3.抽取画面中的视频
+    ffmpeg -i input_test.mp4 -vcodec copy -an output_test.avi
+    ffmpeg -i input_test.mp4 -vcodec copy -an output_test.mp4
+4.音频+视频合成
+    ffmpeg -i input_test_1.mp4 -i input_test_2.mp3 -vcodec copy -acodec copy output_test.mp4
+    ffmpeg -i input_test_1.mp4 -itsoffset 10 -i input_test_2.mp3 -vcodec copy -acodec copy output_test.mp4
+    ffmpeg -ss 20 -t 5 -i input_test_1.mp4 -i input_test_2.aac -vcodec copy -acodec copy output_test.mp4
+    音乐持续播放，视频只播放5秒
+    ffmpeg -ss 20 -t 5 -i input_test_1.mp3 -i input_test_2.mp4 -vcodec copy -acodec copy output_test.mp4
+    视频持续播放，音乐只播放5秒
+5.音频+音频合成
+    ffmpeg -i input_test_1.mp3 -i input_test_2.mp3 -filter_complex amix=inputs=2:duration=shortest output_test.mp3
+    ffmpeg -i input_test_1.mp3 -i input_test_2.mp3 -filter_complex amix=inputs=2:duration=longest output_test.mp3
+    ffmpeg –i input_test_1.mp3 –i input_test_2.mp3 –vcodec copy –acodec copy output_test.mp3
+    格式：ffmpeg -i INPUT1 -i INPUT2 -i INPUT3 -filter_complex amix=inputs=3:duration=first:dropout_transition=3 OUTPUT
+6.视频分离成图片
+    ffmpeg -i input_test.mp4 -r 1 -f image2 output_image-%03d.jpeg
+7.图片合成视频
+    ffmpeg -f image2 -i output_image-%03d.jpeg output_test.mp4
+8.改变音量大小
+    ffmpeg -i input_test.mp3 -af 'volume=0.5' output_test.mp3
+9.音效淡入淡出效果
+    ffmpeg -i input_test.mp3 -filter_complex afade=t=in:ss=0:d=4 output_test.mp3
+    淡入效果：把 input_test.mp3 文件的前5s做一个淡入淡出效果，输出到 output_test.mp3
+    文件中
+    ffmpeg -i input_test.mp3 -filter_complex afade=t=out:st=20:d=6 output_test.mp3
+    淡出效果：将 input_test.mp3 文件从20s开始，做6s的淡出效果，输出到 output_test.mp3 文件中
+10、截取音频
+    ffmpeg -ss 10 -i input_test.mp3 -to 20 -vcodec copy -acodec copy output_test.mp3
+    ffmpeg -ss 10 -i input_test.mp3 -t 5 -vcodec copy -acodec copy output_test.mp3
+    ffmpeg -i input_test.mp3 -c copy -t 10 -output_ts_offset 120 output_test.mp3
+11.容器时长获取
+   ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 -i input_test.mp3
+12.网络资源下载
+   ffmpeg -i https://xxx.xxx.xxxxxx -c copy -f mp3 output_test.mp3
+11.播放音频视频
+   ffplay input_test.mp3
+12.图片生成gif动图
+   ffmpeg -i input_image_%03d.png -r 5 output_test.gif
+13.抽取PCM数据
+   ffmpeg -i input_test.mp4 -vn -ar 44100 -ac 2 -f s16le output_test.pcm
+

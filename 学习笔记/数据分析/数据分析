@@ -1,0 +1,7 @@
+1.特征值提取：
+    适用于方阵
+2.奇异值分解
+    适用于非方阵
+
+
+https://github.com/opencv/opencv/tree/master/data/haarcascades
