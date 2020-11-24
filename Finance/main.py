@@ -5,9 +5,8 @@ from BasicInfo.BasicInfo import GetInfo
 from Graphic.Graphic import Grasphic
 
 
+Grasphic("502056.SH")
 
 
-name,data = GetInfo("600520.SH").main()
-Grasphic(data,name,["K"])
 
 

@@ -8,10 +8,12 @@ import pandas as pd
 import matplotlib.pyplot as mp
 import datetime as dt
 import matplotlib.dates as md
-import re
+from BasicInfo import GetInfo
 
-
-def Grasphic(df,name, params):
+def Grasphic(ts_code):
+    name, df = GetInfo(ts_code).main()
+    print(name)
+    df = df[::-1]
     dates = np.array(pd.to_datetime(df["trade_date"], errors="ignore"))
     mp.rcParams['font.family'] = ['sans-serif']
     mp.rcParams['font.sans-serif'] = ['SimHei']
@@ -24,16 +26,33 @@ def Grasphic(df,name, params):
     # 设置主刻度定位器为周定位器（每周显示主刻度文本）
     ax.xaxis.set_major_locator(md.WeekdayLocator(byweekday=md.MO))
     ax.xaxis.set_major_formatter(md.DateFormatter('%d-%m-%Y'))
-    mp.plot(dates, df["close"], color="black", label=name, linestyle="-", linewidth=1, alpha=0.5)
-
-    for i in params:
-        if i == "K":
-            K_line(df,dates)
-
+    mp.plot(    dates, df["close"], color = "black", label = name, linestyle = "-", linewidth = 1, alpha = 0.5)
+    # for i in params:
+    #     if i == "K":
+    #         K_line(df,dates)
+    regression(df,dates)
+    Mean_move_line(df,dates)
+    bulindai(df,dates)
     mp.legend()
     mp.gcf().autofmt_xdate()
     mp.show()
 
+
+def bulindai(df,dates,days=5):
+    ma5 = np.zeros(df['close'].size - days)
+    for i in range(ma5.size):
+        data = df['close'][i:i + days]
+        ma5[i] = data.mean()
+    mp.plot(dates[days:], ma5, color='blue', label="Mean-5", linestyle="--", linewidth=2, alpha=0.8)
+    stds = np.zeros(ma5.size)
+    for i in range(stds.size):
+        stds[i] = df["close"][i: i + 5].std()  # 计算标准差
+    upper = ma5 + 2 * stds  # 计算上轨
+    lower = ma5 - 2 * stds  # 计算下轨
+    mp.plot(dates[days:], upper, color="green", label="UPPER")
+    mp.plot(dates[days:], lower, color="blue", label="LOWER")
+    #填充布林带
+    mp.fill_between(dates[days:], upper, lower, lower < upper, color="orangered", alpha=0.05)
 
 def K_line(df,dates):
     # #绘制K线图
@@ -52,7 +71,7 @@ def Mean_line(df,dates):
     mp.hlines(mean, dates[0], dates[-1], color='blue', label="mean", linestyles=":", alpha=0.5)
 
 
-def Mean_move_line(df,dates,days=10, weight=False):
+def Mean_move_line(df,dates,days=5, weight=False):
     # 移动均线
     ma5 = np.zeros(df['close'].size - days)
     for i in range(ma5.size):
@@ -79,3 +98,8 @@ def Monvolve(df,dates,days=5, weight=False):
         kernel = np.ones(days) / days
         sma52 = np.convolve(df["close"], kernel, 'valid')
         mp.plot(dates[days - 1:],sma52, color='green', label="卷积_5", linestyle="--", linewidth=2, alpha=0.9)
+
+def regression(df,dates,days=5):
+    """
+        回归运算
+    """

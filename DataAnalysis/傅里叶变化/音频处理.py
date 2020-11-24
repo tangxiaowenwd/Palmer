@@ -6,27 +6,23 @@ import numpy.fft as nf
 import scipy.io.wavfile as wf
 import matplotlib.pyplot as mp
 
-filename = "E:\Github\Palmer\DataAnalysis\data\\videos\\music.wav"
+filename = "E:\Github\Palmer\DataAnalysis\data\\videos\\signal.wav"
 new_filename = filename.split(".")[0]+"new" + ".wav"
 #采样率（每秒采样点的个数），采样位移
 sample_rate, noised_sigs = wf.read(filename)
-print(sample_rate)
-print(noised_sigs)
 
 
 filename1 = "E:\Github\Palmer\DataAnalysis\data\\videos\\noised_new.wav"
 new_filename1 = filename.split(".")[0]+"new" + ".wav"
 #采样率（每秒采样点的个数），采样位移
 sample_rate1, noised_sigs1 = wf.read(filename)
-print(sample_rate)
-print(noised_sigs)
 
 
 noised_sigs = noised_sigs / (2**15) #把图像控制到1和-1之间
 #绘制音频时域的：时间/位移图像
 
 times = np.arange(noised_sigs.size) / sample_rate
-print(times)
+
 
 mp.figure("Filter",facecolor="lightgray")
 # mp.subplot(221)
@@ -35,12 +31,14 @@ mp.figure("Filter",facecolor="lightgray")
 # mp.grid(linestyle=":")
 # mp.plot(times,noised_sigs,color='dodgerblue',label="noised")
 
-mp.subplot(221)
+#mp.subplot(221)
 mp.title("Time Domain",fontsize=16)
 mp.ylabel("Noised Signal")
 mp.grid(linestyle=":")
+print(times)
+print(noised_sigs)
 mp.plot(times[:100],noised_sigs[:100],color='dodgerblue',label="noised")
-
+mp.show()
 
 #基于傅里叶变换，获取音频域信息
 frqes = nf.fftfreq(times.size,times[1]-times[0])
