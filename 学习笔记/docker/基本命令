@@ -21,3 +21,7 @@
 
  jenkins 密码：
 cat /home/jenkins/secrets/initialAdminPassword
+
+
+
+docker pull registry.cn-shanghai.aliyuncs.com/yhskc/bwapp
