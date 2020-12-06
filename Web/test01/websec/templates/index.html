@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--    <ul>-->
+<!--        {% for i in ss %}-->
+<!--            <a href="detail/{{ i.ts_code }}">{{ i.name }}</a>-->
+<!--            <p>{{i.open}}</p><p>{{i.close}}</p>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+    <ul>
+        {% for i in industrys %}
+            <a href="detail/{{ i }}">{{ i }}</a>
+        {% endfor %}
+    </ul>
+
+
+</body>
+</html>
