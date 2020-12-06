@@ -21,3 +21,10 @@
 
  jenkins 密码：
 cat /home/jenkins/secrets/initialAdminPassword
+
+
+docker pull registry.cn-shanghai.aliyuncs.com/yhskc/bwapp
+
+>docker run -d -p 0.0.0.0:80:80 registry.cn-shanghai.aliyuncs.com/yhskc/bwapp
+
+docker run -itd --name mysql-test -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql
