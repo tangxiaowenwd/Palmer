@@ -27,3 +27,6 @@ def detail(request,industry):
 
 def code(request,ts_code):
     return HttpResponse("<h1>%s</h1>"%ts_code)
+
+def manager(request):
+    return HttpResponse("<h1>%s</h1>"%ts_code)
