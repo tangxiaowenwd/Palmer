@@ -7,7 +7,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 #writer = pd.ExcelWriter('./stock.xlsx')
-conn = create_engine("mysql+pymysql://root:123456@localhost:3306/StockInfo?charset=utf8")
+conn = create_engine("mysql+pymysql://root:admin@localhost:3306/django?charset=utf8")
 pro = ts.pro_api("d9f49767544519208fbf91e00a109558fe92e84bdcb70c9173144c24")
 data = pro.query('stock_basic', exchange='', list_status='L',
                  fields='ts_code,name,area,industry,list_date,market,is_hs')
@@ -59,7 +59,7 @@ def merge_data(ts_code):
     # 设置最新日期
     day_data.set_index('ts_code')
     #a2.to_excel(writer, sheet_name=dt, index=0)
-    a2.to_sql("ts"+str(ts_code.split(".")[0]), conn, index=False, if_exists='replace')
+    a2.to_sql("ts"+str(ts_code.split(".")[0]), conn, index=True, if_exists='replace')
 
 
 for ts_code in list(data["ts_code"]):

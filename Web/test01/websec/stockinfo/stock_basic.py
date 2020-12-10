@@ -44,27 +44,10 @@ data = data.sort_values("industry")
 
 
 def merge_data(dt):
-    print(dt)
-    day_data = pro.daily(trade_date=dt)[
-        ["ts_code", "trade_date", "open", "high", "low", "close", "pre_close", "change", "pct_chg", "vol", "amount"]]
-    dayily = pro.daily_basic(trade_date=dt,
-                             fields='ts_code,turnover_rate,volume_ratio,pe,pb,ps,dv_ratio,total_share,float_share,free_share,total_mv,circ_mv')
-    moneyflow = pro.moneyflow(trade_date=dt)[
-        ["ts_code", "buy_sm_vol", "buy_sm_amount", "sell_sm_vol", "sell_sm_amount", "buy_md_vol", "buy_md_amount",
-         "sell_md_vol", "sell_md_amount", "buy_lg_vol",
-         "buy_lg_amount", "sell_lg_vol", "sell_lg_amount", "buy_elg_vol", "buy_elg_amount", "sell_elg_vol",
-         "sell_elg_amount", "net_mf_vol", "net_mf_amount"]]
-
-    a = pd.merge(data, day_data, how='inner', on='ts_code')
-    a1 = pd.merge(a, dayily, how='inner', on='ts_code')
-    a2 = pd.merge(a1, moneyflow, how='inner', on='ts_code')
+    data = pro.query('stock_basic', exchange='', list_status='L', fields='ts_code,name,area,industry,list_date,market,is_hs')
 
     # 设置最新日期
-    day_data.set_index('ts_code')
-    a2.to_excel(writer, sheet_name=dt, index=0)
-    a2.to_sql("Stock", conn, index=False, if_exists='replace')
+    data.set_index('ts_code')
+    data.to_sql("stock", conn, index=False, if_exists='replace')
 
 merge_data(get_day())
-
-writer.save()
-writer.close()
