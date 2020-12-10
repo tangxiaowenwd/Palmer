@@ -16,10 +16,14 @@ def index(request):
 
     return render(request,"index.html",locals())
 
-def detail(request,ts_code):
-    ary1 = request.GET.get("industry")
+def detail(request,industry):
+    ary1 = Dayily.objects.filter(industry=industry)
+    print(ary1)
     if ary1:
-        return render(request, "index.html", locals())
-    return render(request,"detail.html",{"ts_code":ts_code})
+        return render(request, "detail.html", locals())
+    return render(request,"detail.html",{"industry":industry})
 
 
+
+def code(request,ts_code):
+    return HttpResponse("<h1>%s</h1>"%ts_code)

@@ -5,9 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>你好 {{ ts_code }}</h1>
-    <ul>
-        <li>详情界面</li>
-    </ul>
+    <table>
+        <tbody>{{ ts_code }}</tbody>
+        {% for ary in ary1 %}
+            <tr>
+                <td><a href="/code/{{ ary.ts_code }}">{{ary.ts_code}}</a></td>
+                <td>{{ary.name}}</td>
+                <td>{{ary.open}}</td>
+                <td>{{ary.low}}</td>
+                <td>{{ary.high}}</td>
+                <td>{{ary.close}}</td>
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

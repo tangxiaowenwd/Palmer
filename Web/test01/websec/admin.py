@@ -10,11 +10,11 @@ class StockAdmin(admin.ModelAdmin):
     pass
 
 class DayilyAdmin(admin.ModelAdmin):
-    site_url = "/to"
+    #site_url = "/to"
 
 
     '''设置列表可显示的字段'''
-    list_display = ('ts_code','market','trade_date','name','industry', 'open','high','low','close','pre_close','change','pct_chg','volume_ratio','turnover_rate','pe','total_mv')
+    list_display = ('market','ts_code','trade_date','name','industry', 'open','high','low','close','pre_close','change','pct_chg','volume_ratio','turnover_rate','pe','total_mv')
 
     '''设置过滤选项'''
     list_filter = ('industry',)

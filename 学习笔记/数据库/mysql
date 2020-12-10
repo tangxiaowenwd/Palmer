@@ -5,3 +5,8 @@ win+R，进入命令行模式，输入：mysql -u root -p，如果前面没有�
 执行：alter user root@localhost identified by 'admin';  enter键后成功改密码为root，这里sql语句后面的分号不要丢。
 
 基本命令：
+
+create table class(id int primary key auto_increment,caption char(20));
+
+
+create table student(id int primary key auto_increment,name varchar(20),sex enum(‘male’,‘female’) default ‘male’,class_id int,foreign key(class_id) references class(id));
