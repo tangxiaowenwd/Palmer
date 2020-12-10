@@ -4,20 +4,20 @@ from django.contrib import admin
 
 
 from django.contrib import admin
-from .models import Stock,StockDetail
+from .models import Stock,Dayily
 
 class StockAdmin(admin.ModelAdmin):
-    list_display = ('ts_code','name','industry','market','area')
+    pass
 
-class StockDetailAdmin(admin.ModelAdmin):
+class DayilyAdmin(admin.ModelAdmin):
     #site_url = "/to"
 
 
     '''设置列表可显示的字段'''
-   # list_display = ('ts_code','trade_date','name','industry', 'open','high','low','close','pre_close','change','pct_chg','volume_ratio','turnover_rate','pe','total_mv')
+    list_display = ('market','ts_code','trade_date','name','industry', 'open','high','low','close','pre_close','change','pct_chg','volume_ratio','turnover_rate','pe','total_mv')
 
     '''设置过滤选项'''
-    #list_filter = ('industry',)
+    list_filter = ('industry',)
 
     '''每页显示条目数'''
     list_per_page = 50
@@ -35,4 +35,4 @@ class StockDetailAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Stock, StockAdmin)
-admin.site.register(StockDetail, StockDetailAdmin)
+admin.site.register(Dayily, DayilyAdmin)
