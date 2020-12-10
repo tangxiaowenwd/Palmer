@@ -30,6 +30,8 @@ def get_weekly(days=5):
 
 def get_day():
     now = datetime.datetime.now()
+    if now.weekday() != 5 and now.weekday() != 6:
+        return now.strftime("%Y%m%d")
     while True:
         delta = datetime.timedelta(days=1)
         now = now - delta
@@ -42,6 +44,7 @@ data = data.sort_values("industry")
 
 
 def merge_data(dt):
+    print(dt)
     day_data = pro.daily(trade_date=dt)[
         ["ts_code", "trade_date", "open", "high", "low", "close", "pre_close", "change", "pct_chg", "vol", "amount"]]
     dayily = pro.daily_basic(trade_date=dt,
