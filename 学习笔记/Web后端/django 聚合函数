@@ -1,0 +1,32 @@
+聚合函数：
+    使用aggregate()过滤器调用聚合函数。聚合函数包括：Avg(平均)，Count(数量)，Max(最大)，Min(最小)，Sum(求和)，被定义在django.db.models中
+
+使用count时一般不使用aggregate()过滤器
+    BookInfo.objects.count()
+
+排序：
+    BookInfo.objects.all().order_by('bread')  # 升序
+    BookInfo.objects.all().order_by('-bread')  # 降序
+
+ 关联查询：
+    一到多的访问语法：
+        b = BookInfo.objects.get(id=1)
+        b.heroinfo_set.all()
+
+
+删除：
+    hero = HeroInfo.objects.get(id=13)
+    hero.delete()
+
+    HeroInfo.objects.filter(id=14).delete()
+
+查询集 QuerySet：
+    Django的ORM中存在查询集的概念。
+    查询集，也称查询结果集、QuerySet，表示从数据库中获取的对象集合。
+    当调用如下过滤器方法时，Django会返回查询集（而不是简单的列表）：
+        all()：返回所有数据。
+        filter()：返回满足条件的数据。
+        exclude()：返回满足条件之外的数据。
+        order_by()：对结果进行排序
+
+    BookInfo.objects.filter(bread__gt=30).order_by('bpub_date')

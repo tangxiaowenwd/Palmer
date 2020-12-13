@@ -1,70 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <table>
-        <tbody>{{ ts_code }}</tbody>
-            <tr>
-                <th><a href="/code/{{ ary.ts_code }}">{{ary.ts_code}}</a></th>
-                <th>股票名称</th>
-                <th>所在地域</th>
-                <th>所属行业</th>
-                <th>上市日期</th>
-                <th>交易日期</th>
-                <th>开盘价</th>
-                <th>最高价</th>
-                <th>最低价</th>
-                <th>收盘价</th>
-                <th>昨收价</th>
-                <th>涨跌额</th>
-                <th>涨跌幅</th>
-                <th>成交量(手)</th>
-                <th>成交额(千元)</th>
-                <th>换手率</th>
-                <th>量比</th>
-                <th>市盈率</th>
-                <th>市净率</th>
-                <th>市销率</th>
-                <th>股息率</th>
-                <th>总股本</th>
-                <th>流通股本</th>
-                <th>总市值</th>
-                <th>净流入量</th>
-                <th>净流入额</th>
-            </tr>
-        {% for ary in ary1 %}
-            <tr>
-                <td><a href="/code/{{ ary.ts_code }}">{{ary.ts_code}}</a></td>
-                <td>{{ary.name}}</td>
-                <td>{{ary.area}}</td>
-                <td>{{ary.list_date}}</td>
-                <td>{{ary.market}}</td>
-                <td>{{ary.trade_date}}</td>
-                <td>{{ary.open}}</td>
-                <td>{{ary.high}}</td>
-                <td>{{ary.low}}</td>
-                <td>{{ary.close}}</td>
-                <td>{{ary.pre_close}}</td>
-                <td>{{ary.change}}</td>
-                <td>{{ary.pct_chg}}</td>
-                <td>{{ary.vol}}</td>
-                <td>{{ary.amount}}</td>
-                <td>{{ary.turnover_rate}}</td>
-                <td>{{ary.volume_ratio }}</td>
-                <td>{{ary.pe}}</td>
-                <td>{{ary.pb}}</td>
-                <td>{{ary.ps}}</td>
-                <td>{{ary.dv_ratio}}</td>
-                <td>{{ary.total_share}}</td>
-                <td>{{ary.float_share}}</td>
-                <td>{{ary.total_mv}}</td>
-                <td>{{ary.net_mf_vol}}</td>
-                <td>{{ary.net_mf_amount}}</td>
-            </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+
+</div>
+
+
+<table class="table table-hover">
+    <tbody>{{ ts_code }}</tbody>
+    <tr>
+        <th><a href="/code/{{ ary.ts_code }}">{{ary.ts_code}}</a></th>
+        <th>股票名称</th>
+        <th>所在地域</th>
+        <th>所属行业</th>
+        <th>上市日期</th>
+        <th>交易日期</th>
+        <th>开盘价</th>
+        <th>最高价</th>
+        <th>最低价</th>
+        <th class="sort-date">收盘价</th>
+        <th>昨收价</th>
+        <th>涨跌额</th>
+        <th>涨跌幅</th>
+        <th>成交量(手)</th>
+        <th>成交额(千元)</th>
+        <th>换手率</th>
+        <th><a href="?order_by=volume_ratio">量比</a></th>
+        <th>市盈率</th>
+        <th>市净率</th>
+        <th>市销率</th>
+        <th>股息率</th>
+        <th>总股本</th>
+        <th>流通股本</th>
+        <th>总市值</th>
+        <th>净流入量</th>
+        <th>净流入额</th>
+    </tr>
+    {% for ary in ary1 %}
+    <tr>
+        <td class="sequence"><a href="/code/{{ ary.ts_code }}">{{ary.ts_code}}</a></td>
+        <td class="sequence">{{ary.name}}</td>
+        <td class="table-responsive-lg">{{ary.area}}</td>
+        <td>{{ary.list_date}}</td>
+        <td>{{ary.market}}</td>
+        <td>{{ary.trade_date}}</td>
+        <td>{{ary.open}}</td>
+        <td>{{ary.high}}</td>
+        <td>{{ary.low}}</td>
+        <td>{{ary.close}}</td>
+        <td>{{ary.pre_close}}</td>
+        <td>{{ary.change}}</td>
+        <td>{{ary.pct_chg}}</td>
+        <td>{{ary.vol}}</td>
+        <td>{{ary.amount}}</td>
+        <td>{{ary.turnover_rate}}</td>
+        <td>{{ary.volume_ratio }}</td>
+        <td>{{ary.pe}}</td>
+        <td>{{ary.pb}}</td>
+        <td>{{ary.ps}}</td>
+        <td>{{ary.dv_ratio}}</td>
+        <td>{{ary.total_share}}</td>
+        <td>{{ary.float_share}}</td>
+        <td>{{ary.total_mv}}</td>
+        <td>{{ary.net_mf_vol}}</td>
+        <td>{{ary.net_mf_amount}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

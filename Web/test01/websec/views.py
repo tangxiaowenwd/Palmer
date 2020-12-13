@@ -7,19 +7,33 @@ pro = ts.pro_api("d9f49767544519208fbf91e00a109558fe92e84bdcb70c9173144c24")
 import pandas as pd
 
 from .models import Stock,StockDetail,getModel
-
+from django.db.models import Sum
 
 def index(request):
-    ss = Stock.objects.all()
     industrys = list(set(Stock.objects.all().values_list('industry')))
     industrys = [i[0] for i in industrys]
+    #ss = StockDetail.objects.all()
+    #reg = StockDetail.objects.values('net_mf_vol').annotate(number=Sum())
     return render(request,"index.html",locals())
 
 def detail(request,industry):
-    ary1 = StockDetail.objects.filter(industry=industry)
-    if ary1:
-        return render(request, "detail.html", locals())
-    return render(request,"detail.html",{"industry":industry})
+    arg = request.GET.get("order_by")
+    if arg:
+        if industry == "all_infos":
+            ary1 = StockDetail.objects.all().order_by(arg)
+            return render(request, "detail.html", locals())
+        ary1 = StockDetail.objects.filter(industry=industry).order_by(arg)
+        if ary1:
+            return render(request, "detail.html", locals())
+        return render(request,"detail.html",{"industry":industry})
+    else:
+        if industry == "all_infos":
+            ary1 = StockDetail.objects.all()
+            return render(request, "detail.html", locals())
+        ary1 = StockDetail.objects.filter(industry=industry)
+        if ary1:
+            return render(request, "detail.html", locals())
+        return render(request,"detail.html",{"industry":industry})
 
 
 

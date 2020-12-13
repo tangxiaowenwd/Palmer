@@ -1,0 +1,45 @@
+2.2 过滤查询
+实现SQL中的where功能，包括
+    filter 过滤出多个结果
+    exclude 排除掉符合条件剩下的结果
+    get 过滤单一结果
+
+filter:
+exact：表示判等。
+    BookInfo.objects.filter(btitle__contains='游')
+模糊查询:contains：是否包含。
+    BookInfo.objects.filter(id__exact=3)
+startswith、endswith：以指定值开头或结尾
+    BookInfo.objects.filter(btitle__endswith='记')
+空查询：isnull：是否为null
+    BookInfo.objects.filter(btitle__isnull=False)
+范围查询：in：是否包含在范围内
+    BookInfo.objects.filter(id__in=[1, 3, 5])
+比较查询：
+    gt ：大于 (greater then)
+    gte ：大于等于 (greater then equal)
+    lt ：小于 (less then)
+    lte ：小于等于 (less then equal)
+
+    BookInfo.objects.filter(id__gt=3)
+不等于的运算符，使用exclude()过滤器
+    BookInfo.objects.exclude(id=3)
+日期查询：
+    BookInfo.objects.filter(bpub_date__year=1980)
+
+F对象：
+    from django.db.models import F
+    BookInfo.objects.filter(bread__gte=F('bcomment'))
+Q对象：多个过滤器逐个调用表示逻辑与关系，同sql语句中where部分的and关键字。
+    BookInfo.objects.filter(bread__gt=20,id__lt=3)
+或
+    BookInfo.objects.filter(bread__gt=20).filter(id__lt=3)
+
+    from django.db.models import Q
+    BookInfo.objects.filter(Q(bread__gt=20))
+
+Q对象可以使用&、|连接，&表示逻辑与，|表示逻辑或
+    BookInfo.objects.filter(Q(bread__gt=20) | Q(pk__lt=3))
+
+Q对象前可以使用~操作符，表示非not。
+    BookInfo.objects.filter(~Q(pk=3))

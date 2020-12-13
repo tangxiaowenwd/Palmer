@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
     <h1>产业</h1>
-    <ul>
+        <P><a href="detail/all_infos">所有股票</a></P>
         {% for i in industrys %}
             <P><a href="detail/{{ i }}">{{ i }}</a></P>
         {% endfor %}
-    </ul>
-
-</body>
-</html>
+<table class="table table-hover">
+    <tbody>{{ ts_code }}</tbody>
+    <tr>
+    </tr>
+</table>
+{% endblock %}
