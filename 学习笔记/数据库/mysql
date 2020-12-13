@@ -10,3 +10,5 @@ create table class(id int primary key auto_increment,caption char(20));
 
 
 create table student(id int primary key auto_increment,name varchar(20),sex enum(‘male’,‘female’) default ‘male’,class_id int,foreign key(class_id) references class(id));
+
+ALTER TABLE stockdetail ADD id integer AUTO_INCREMENT NOT NULL PRIMARY KEY FIRST;

@@ -6,15 +6,42 @@
 </head>
 <body>
     <table>
-        <tbody>{{ ts_code }}</tbody>
-        {% for ary in ary1 %}
+        <caption>
+            {{ infos.name }} {{ ts_code }}
+            地域：{{ infos.area }} 行业：{{ infos.industry }}
+        </caption>
             <tr>
-                <td><a href="/code/{{ ary.ts_code }}">{{ary.ts_code}}</a></td>
-                <td>{{ary.name}}</td>
+                <th>日期</th>
+                <th>开盘价</th>
+                <th>最低价</th>
+                <th>最高价</th>
+                <th>收盘价</th>
+                <th>量比</th>
+                <th>换手率</th>
+                <th>市盈率</th>
+                <th>市净率</th>
+                <th>市销率</th>
+                <th>总市值 </th>
+                <th>流通市值</th>
+                <th>净流入量</th>
+                <th>净流入额</th>
+            </tr>
+                {% for ary in det %}
+            <tr>
+                <td>{{ary.trade_date}}</td>
                 <td>{{ary.open}}</td>
                 <td>{{ary.low}}</td>
                 <td>{{ary.high}}</td>
                 <td>{{ary.close}}</td>
+                <td>{{ary.volume_ratio}}</td>
+                <td>{{ary.turnover_rate}}</td>
+                <td>{{ary.pe}}</td>
+                <td>{{ary.pb}}</td>
+                <td>{{ary.ps}}</td>
+                <td>{{ary.total_mv}}</td>
+                <td>{{ary.circ_mv}}</td>
+                <td>{{ary.net_mf_vol}}</td>
+                <td>{{ary.net_mf_amount}}</td>
             </tr>
         {% endfor %}
     </table>

@@ -21,8 +21,13 @@ class Stock(models.Model):
 
 
 class StockDetail(models.Model):
-
     ts_code = models.CharField(max_length=10, blank=True, primary_key=True, verbose_name="股票代码")
+    name = models.CharField(max_length=50, blank=True, null=True, verbose_name="股票名称")
+    area = models.CharField(max_length=50, blank=True, null=True, verbose_name="所在地域")
+    industry = models.CharField(max_length=20, blank=True, null=True, verbose_name="所属行业")
+    list_date = models.CharField(max_length=20, blank=True, null=True, verbose_name="上市日期")
+    market = models.CharField(max_length=20, blank=True, null=True, verbose_name="市场类型")
+    is_hs = models.CharField(max_length=20, blank=True, null=True, verbose_name="是否沪深港通标的")
     # 日线行情
     trade_date = models.CharField(max_length=20, blank=True, null=True, verbose_name="交易日期")
     open = models.FloatField(blank=True, null=True, verbose_name="开盘价")
@@ -88,6 +93,14 @@ def getModel(db_table):
         __metaclass__ = MyClassMetaclass
         id = models.IntegerField(max_length=20,blank=False)
         ts_code = models.CharField(max_length=10, blank=True, primary_key=True, verbose_name="股票代码")
+        name = models.CharField(max_length=50, blank=True, null=True, verbose_name="股票名称")
+        area = models.CharField(max_length=50, blank=True, null=True, verbose_name="所在地域")
+        industry = models.CharField(max_length=20, blank=True, null=True, verbose_name="所属行业")
+        list_date = models.CharField(max_length=20, blank=True, null=True, verbose_name="上市日期")
+        market = models.CharField(max_length=20, blank=True, null=True, verbose_name="市场类型")
+        is_hs = models.CharField(max_length=20, blank=True, null=True, verbose_name="是否沪深港通标的")
+
+
         # 日线行情
         trade_date = models.CharField(max_length=20, blank=True, null=True, verbose_name="交易日期")
         open = models.FloatField(blank=True, null=True, verbose_name="开盘价")
